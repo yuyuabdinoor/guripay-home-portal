@@ -9,17 +9,21 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 transition-smooth",
+        outline: "border border-border bg-background hover:bg-card-hover hover:text-accent-foreground transition-smooth",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary-light transition-smooth shadow-custom-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground transition-smooth",
+        link: "text-primary underline-offset-4 hover:underline transition-smooth",
+        hero: "bg-gradient-hero text-primary-foreground hover:shadow-elegant hover:scale-[1.02] transition-bounce font-semibold",
+        cta: "bg-gradient-accent text-secondary-foreground hover:shadow-custom-lg hover:scale-[1.02] transition-bounce font-semibold",
+        "outline-secondary": "border-2 border-secondary text-secondary bg-transparent hover:bg-secondary hover:text-secondary-foreground transition-smooth",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-lg px-10 text-base",
         icon: "h-10 w-10",
       },
     },
