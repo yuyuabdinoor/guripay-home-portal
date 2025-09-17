@@ -63,6 +63,7 @@ export default {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-accent': 'var(--gradient-accent)',
         'gradient-subtle': 'var(--gradient-subtle)',
+        'gradient-card': 'var(--gradient-card)',
       },
       boxShadow: {
         'elegant': 'var(--shadow-elegant)',

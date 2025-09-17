@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,38 +15,45 @@ import {
   Star,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  ArrowRight,
+  Play,
+  Banknote,
+  TrendingUp,
+  Calendar
 } from 'lucide-react';
 
 export function LandingPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const features = [
     {
-      icon: <Users className="h-8 w-8 text-secondary" />,
+      icon: Users,
       title: "Tenant Management",
       description: "Comprehensive tenant profiles, lease tracking, and communication tools all in one place."
     },
     {
-      icon: <CreditCard className="h-8 w-8 text-secondary" />,
+      icon: CreditCard,
       title: "MPesa & Hormuud Integration",
       description: "Seamless payment processing with real-time confirmations and automated receipts."
     },
     {
-      icon: <BarChart3 className="h-8 w-8 text-secondary" />,
+      icon: BarChart3,
       title: "Financial Reports",
       description: "Detailed analytics, income tracking, and automated financial reporting."
     },
     {
-      icon: <Shield className="h-8 w-8 text-secondary" />,
+      icon: Shield,
       title: "Secure & Compliant",
       description: "Bank-level security with full compliance to Kenyan financial regulations."
     },
     {
-      icon: <Smartphone className="h-8 w-8 text-secondary" />,
+      icon: Smartphone,
       title: "Mobile-First Design",
       description: "Optimized for mobile use with offline capabilities and push notifications."
     },
     {
-      icon: <Building2 className="h-8 w-8 text-secondary" />,
+      icon: Building2,
       title: "Multi-Property Support",
       description: "Manage multiple properties and unit types from a single dashboard."
     }
@@ -115,7 +122,7 @@ export function LandingPage() {
               <a href="#contact" className="text-muted-foreground hover:text-primary transition-smooth">Contact</a>
               <DemoModal 
                 type="demo"
-                trigger={<Button variant="outline-secondary">Book Demo</Button>}
+                trigger={<Button variant="outline">Book Demo</Button>}
               />
             </div>
           </div>
@@ -123,92 +130,179 @@ export function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-secondary/80"></div>
+        <div className="absolute inset-0 opacity-20 bg-white/5"></div>
+        
+        <div className="relative container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge variant="secondary" className="w-fit">
-                  Trusted by 500+ Landlords in Kenya
-                </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-primary leading-tight">
-                  Property Management Made
-                  <span className="bg-gradient-accent bg-clip-text text-transparent"> Simple</span>
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Streamline your rental business with GURIPAY's all-in-one platform. 
-                  Manage tenants, track payments, and grow your portfolio with confidence.
-                </p>
+            <div className="text-white">
+              {/* Social Proof */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 bg-secondary rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white">J</div>
+                  <div className="w-8 h-8 bg-warning rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white">M</div>
+                  <div className="w-8 h-8 bg-success rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white">A</div>
+                </div>
+                <div className="text-sm">
+                  <span className="text-yellow-300">★★★★★</span>
+                  <span className="ml-2 text-white/80">4.9 from 500+ landlords</span>
+                </div>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Simple
+                <span className="block text-secondary">property management</span>
+                <span className="block text-white">for Kenyan landlords</span>
+              </h1>
+              
+              <p className="text-xl mb-8 text-white/90 max-w-lg leading-relaxed">
+                From tenant screening to M-Pesa rent collection. GURIPAY helps you build a more profitable rental portfolio directly from your phone.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-primary hover:bg-white/90 font-semibold shadow-lg"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Watch Demo
+                  <Play className="ml-2 h-5 w-5" />
+                </Button>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <DemoModal 
-                  type="trial"
-                  trigger={<Button variant="cta" size="xl">Start Free Trial</Button>}
-                />
-                <DemoModal 
-                  type="demo"
-                  trigger={<Button variant="hero" size="xl">Book Demo</Button>}
-                />
-              </div>
-              
-              <div className="flex items-center gap-6 text-muted-foreground">
+              <div className="grid grid-cols-2 gap-6 text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-secondary" />
-                  <span>No setup fees</span>
+                  <span>Free 14-day trial</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-secondary" />
-                  <span>14-day free trial</span>
+                  <span>No setup costs</span>
                 </div>
               </div>
             </div>
             
-            <div className="relative">
-              <img 
-                src={heroImage} 
-                alt="GURIPAY Property Management Dashboard" 
-                className="rounded-2xl shadow-elegant w-full"
-              />
-              <div className="absolute inset-0 bg-gradient-hero/10 rounded-2xl"></div>
+            {/* Dashboard Preview */}
+            <div className="relative lg:ml-8">
+              <div className="relative bg-white rounded-2xl shadow-2xl p-4 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                <div className="bg-primary rounded-xl p-6 text-white">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold">Dashboard Overview</h3>
+                    <div className="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-secondary">KSH 850K</div>
+                      <div className="text-sm text-white/80">Monthly Revenue</div>
+                    </div>
+                    <div className="bg-white/10 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-warning">24</div>
+                      <div className="text-sm text-white/80">Active Tenants</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between bg-white/5 rounded-lg p-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-secondary rounded-full"></div>
+                        <div>
+                          <div className="font-medium">John Kamau</div>
+                          <div className="text-xs text-white/60">Apt 2B</div>
+                        </div>
+                      </div>
+                      <div className="text-success text-sm font-medium">Paid</div>
+                    </div>
+                    <div className="flex items-center justify-between bg-white/5 rounded-lg p-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-warning rounded-full"></div>
+                        <div>
+                          <div className="font-medium">Mary Wanjiku</div>
+                          <div className="text-xs text-white/60">Apt 1A</div>
+                        </div>
+                      </div>
+                      <div className="text-warning text-sm font-medium">Due</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 bg-secondary text-white rounded-full p-3 shadow-lg animate-bounce">
+                <Smartphone className="h-6 w-6" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-success text-white rounded-full p-3 shadow-lg">
+                <Banknote className="h-6 w-6" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-background">
+      <section id="features" className="py-20 bg-gradient-subtle">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-primary mb-4">
+            <Badge variant="secondary" className="mb-4 bg-secondary/10 text-secondary">Features</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
               Everything You Need to Manage Properties
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From tenant onboarding to payment processing, GURIPAY provides all the tools 
-              you need to run a successful rental business.
+            </h2>  
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              From tenant screening to rent collection, GURIPAY covers all your property management needs
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="border-0 shadow-custom-md hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
-                <CardHeader>
-                  <div className="mb-4">{feature.icon}</div>
-                  <CardTitle className="text-xl text-primary">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base leading-relaxed">
+              <Card 
+                key={index} 
+                className="group hover:shadow-elegant transition-all duration-500 border-0 shadow-custom-md hover:-translate-y-2 bg-white/80 backdrop-blur-sm"
+              >
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-gradient-accent rounded-2xl flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-secondary transition-colors">
+                    {feature.title}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground leading-relaxed">
                     {feature.description}
                   </CardDescription>
-                </CardContent>
+                </CardHeader>
               </Card>
             ))}
+          </div>
+          
+          {/* Stats Section */}
+          <div className="grid md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-border/50">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-secondary mb-2">500+</div>
+              <div className="text-muted-foreground">Properties Managed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-secondary mb-2">98%</div>
+              <div className="text-muted-foreground">Payment Success Rate</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-secondary mb-2">24/7</div>
+              <div className="text-muted-foreground">Customer Support</div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gradient-subtle">
+      <section id="pricing" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold text-primary mb-4">
@@ -257,7 +351,7 @@ export function LandingPage() {
                     type="trial"
                     trigger={
                       <Button 
-                        variant={plan.popular ? "cta" : "outline-secondary"} 
+                        variant={plan.popular ? "default" : "outline"} 
                         className="w-full"
                         size="lg"
                       >
@@ -273,7 +367,7 @@ export function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-background">
+      <section id="contact" className="py-20 bg-gradient-subtle">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -330,7 +424,7 @@ export function LandingPage() {
                     <DemoModal 
                       type="demo"
                       trigger={
-                        <Button variant="hero" className="flex-1" size="lg">
+                        <Button variant="outline" className="flex-1" size="lg">
                           Schedule Demo
                         </Button>
                       }
@@ -338,7 +432,7 @@ export function LandingPage() {
                     <DemoModal 
                       type="trial"
                       trigger={
-                        <Button variant="cta" className="flex-1" size="lg">
+                        <Button className="flex-1" size="lg">
                           Start Free Trial
                         </Button>
                       }
@@ -407,6 +501,7 @@ export function LandingPage() {
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
